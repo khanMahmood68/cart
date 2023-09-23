@@ -4,14 +4,34 @@ class CartItem extends React.Component{
     constructor(){
         super();
         this.state={
-            title:'Phone',
+            title:'Mobile Phone',
             price:9999,
             qty:1,
             img:''
         }
     }
     increaseQuantity = ()=>{
-        console.log('this',this.state);
+        // Mthod-1     When previous state is not required
+        // this.setState({
+        //     qty:this.state.qty+1,
+        // })
+
+
+        // Method-2    If previous state is required then use it
+        this.setState((prevState) =>{
+            return {
+            qty: prevState.qty+1,
+          }});
+    }
+
+    
+    decreaseQuantity = ()=>{
+        this.setState((dec) => {
+            return{
+                qty: dec.qty-1,
+            }
+            
+          });
     }
     render(){
         const {title,price,qty} = this.state
@@ -37,6 +57,7 @@ class CartItem extends React.Component{
                             alt="Decrease" 
                             className="action-icons" 
                             src="https://cdn-icons-png.flaticon.com/512/992/992683.png"
+                            onClick={this.decreaseQuantity}
                         />
                         <img 
                             alt="Delete" 
