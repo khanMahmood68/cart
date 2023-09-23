@@ -11,6 +11,7 @@ class CartItem extends React.Component{
         }
     }
     increaseQuantity = ()=>{
+        
         // Mthod-1     When previous state is not required
         // this.setState({
         //     qty:this.state.qty+1,
@@ -24,8 +25,13 @@ class CartItem extends React.Component{
           }});
     }
 
-    
+
     decreaseQuantity = ()=>{
+
+        const{qty} = this.state;
+        if(qty == 0){
+            return;
+        }
         this.setState((dec) => {
             return{
                 qty: dec.qty-1,
